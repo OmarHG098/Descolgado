@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-descolgado-yellow: #d4a017;
+  --color-descolgado-brown: #c4a882;
+  --color-descolgado-gray: #e8e4dc;
+  --color-descolgado-red: #9b2a2a;
+  --color-descolgado-ink: #000000;
+
+  --font-grotesque: var(--font-grotesque-family), sans-serif;
+  --font-body: Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-serif-family), Georgia, serif;
+}
+
+body {
+  background: var(--color-descolgado-gray);
+  color: var(--color-descolgado-ink);
+  font-family: var(--font-body);
+}

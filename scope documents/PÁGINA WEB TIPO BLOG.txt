@@ -1,0 +1,24 @@
+		--- PÁGINA WEB TIPO BLOG ---
+	
+	SI ESTO FUERA UNA PINTURA SERÍA INCOLGABLE -> DESCOLGADO /DESCOLGARSE 	-> ALGO ERRÁTICO 
+	
+	TEXTOS: 
+	
+	0. Texto todo negro
+0.1 Texto 'Grotesque' para navbar, laterales, etc.,  textos en 'helvética', dentro de la ficha 'Seriff'
+	
+	PALETA DE COLORES: 
+	
+	1. Una paleta es un contrste entre un amarillo #D4A017 y un café #C4A882 de cantera header nav y sidebar
+	2. Otra opción es gris #E8E4DC con rojo #9B2A2A (en acentos puntuales) de los mosaicos de centro, para el artículo en sí
+	
+	ALCANCE TÉCNICO: 
+	
+	1. Santiago es el dueño y sólo escribe él. No tendrá usuarios además de él, por lo que necesita un link o token para ingresar
+	2. Necesita por entrada una imagen, de preferencia convertir a .webp
+	3. Santiago prefiere escribir en el navegador y tener un autoguardado para poder ver el resultado visual
+	4. Opción para compartir el enlace en whatsapp, y considerar sección de comentarios -> redirección a insta / posteo breve en insta 
+	5. Navbar con "Home", "Acerca De", "Contacto", Buscador de palabras clave 
+	6. Footer con copyright y diseño
+	7.  Home con un "Feed" de "Piezas", e incluir la ficha
+	El sidebar presente sólo dentro de las piezas, con filtrado más nuevo a más viejo

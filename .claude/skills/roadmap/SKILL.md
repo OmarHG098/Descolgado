@@ -17,8 +17,8 @@ Read `docs/descolgado-roadmap.md`. If it doesn't exist, STOP and tell the user �
 
 ## Match each merged branch/PR to a chunk
 For each merged branch found:
-- Try the regex `^(feat|fix|chore|docs)/(\d+)-` against the branch name. If it matches, the captured number (strip leading zeros) is the chunk `#` — this is a confident match.
-- If it doesn't match, use judgment: compare the PR title and changed file paths against each row's `Chunk` description in the table. For example, a merged PR whose files live under `.claude/skills/` and `.claude/agents/` corresponds to chunk 0, "Wire branch/PR skill + subagents to this plan," even though its branch was named `setup`. State your reasoning inline when you report this — don't silently assume a match.
+- Try the regex `^(feat|fix)/(\d+)-` against the branch name. If it matches, the captured number (strip leading zeros) is the chunk `#` — this is a confident match. **Deliberately excludes `chore`/`docs`**: those branch numbers are arbitrary housekeeping IDs, not chunk references (see the closing note below on `chore/NN-update-roadmap-status`), so treating them as authoritative here would misattribute chore/docs merges to unrelated chunk rows.
+- If it doesn't match — including every `chore`/`docs` branch — use judgment: compare the PR title and changed file paths against each row's `Chunk` description in the table. For example, a merged PR whose files live under `.claude/skills/` and `.claude/agents/` corresponds to chunk 0, "Wire branch/PR skill + subagents to this plan," even though its branch was named `setup`. State your reasoning inline when you report this — don't silently assume a match.
 - If no reasonable match can be made for a merged branch, list it as unmatched and ask the user to clarify. Don't guess.
 
 ## Find in-progress work

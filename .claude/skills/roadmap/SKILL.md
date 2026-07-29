@@ -29,4 +29,4 @@ For each merged branch found:
 ## Report what's next
 - Summarize which chunks changed status (old → new) and why (which branch/PR matched, and your reasoning if it was a fallback match).
 - Identify the next chunk to work on: the lowest-numbered row still `not started` (or `in progress` if one exists and nothing lower is `not started`).
-- Tell the user the roadmap file now has an uncommitted edit. Suggest running `/branch chore/NN-update-roadmap-status` then `/commit` if they want to land it — this is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row. Do not create a branch or commit yourself.
+- Tell the user the roadmap file now has an uncommitted edit. `/branch` will refuse to run while it's dirty, and `/commit` refuses to run on `main` — so if they want to land it, they need to stash the edit first: `git stash -u`, then `/branch chore/NN-update-roadmap-status`, then `git stash pop`, then `/commit`. This is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row. Do not create a branch, stash, or commit yourself.

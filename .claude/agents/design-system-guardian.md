@@ -1,6 +1,6 @@
 ---
 name: design-system-guardian
-description: Checks new UI code against Descolgado's design system (palette, typography) defined in docs/roadmap.md.
+description: Checks new UI code against Descolgado's design system (palette, typography) defined in docs/descolgado-roadmap.md.
 tools: Read, Grep, Glob
 ---
 

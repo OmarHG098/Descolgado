@@ -21,12 +21,19 @@ For each merged branch found:
 - If it doesn't match, use judgment: compare the PR title and changed file paths against each row's `Chunk` description in the table. For example, a merged PR whose files live under `.claude/skills/` and `.claude/agents/` corresponds to chunk 0, "Wire branch/PR skill + subagents to this plan," even though its branch was named `setup`. State your reasoning inline when you report this — don't silently assume a match.
 - If no reasonable match can be made for a merged branch, list it as unmatched and ask the user to clarify. Don't guess.
 
+## Find in-progress work
+After resolving merged work above, look for chunks that have work started but not yet merged:
+1. Gather candidate branches from: `git branch --show-current` (current branch), `git branch --list` (all local branches), and — if `gh` is available and authenticated — `gh pr list --state open --json number,headRefName` (open, unmerged PRs).
+2. Match each candidate against the same `^(feat|fix|chore|docs)/(\d+)-` regex used for merged branches to recover a chunk number. Fallback judgment (title/file matching) does not apply here — only confident regex matches count, since there's no PR content yet to reason about for most of these.
+3. Note each match as a candidate `not started → in-progress` transition, but don't apply it yet — merged work takes priority (see below).
+
 ## Update the Status column
 - For every chunk row with a confident match to merged work, set its `Status` cell to `done`.
+- For every chunk row matched to in-progress work (from the previous section) that is currently `not started`, set its `Status` cell to `in-progress`. Never touch a row that's already `done` — if a stray local branch matches a chunk that merged work already confirmed as done, skip it, since merged status always wins.
 - Leave every other row untouched — don't downgrade an `in progress` row you have no merge evidence for, and don't invent progress for anything unmatched.
 - Use the Edit tool to change only the `Status` cell text of matched rows in `docs/descolgado-roadmap.md`. Preserve every other line and column exactly as-is.
 
 ## Report what's next
-- Summarize which chunks changed status (old → new) and why (which branch/PR matched, and your reasoning if it was a fallback match).
+- Summarize which chunks changed status (old → new) and why (which branch/PR matched, and your reasoning if it was a fallback match), covering both the merged (`done`) and in-progress transitions.
 - Identify the next chunk to work on: the lowest-numbered row still `not started` (or `in progress` if one exists and nothing lower is `not started`).
-- Tell the user the roadmap file now has an uncommitted edit. `/branch` will refuse to run while it's dirty, and `/commit` refuses to run on `main` — so if they want to land it, they need to stash the edit first: `git stash -u`, then `/branch chore/NN-update-roadmap-status`, then `git stash pop`, then `/commit`. This is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row. Do not create a branch, stash, or commit yourself.
+- Tell the user the roadmap file now has an uncommitted edit. If they want to land it, they can just run `/branch chore/NN-update-roadmap-status` — it auto-stashes and restores the edit on the new branch even from `main` — followed by `/commit`. This is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row. Do not create a branch, stash, or commit yourself.

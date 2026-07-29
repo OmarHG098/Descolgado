@@ -38,9 +38,26 @@ export const piece = defineType({
       type: 'object',
       description: "The Piece's technical data sheet — fields will expand later.",
       fields: [
-        defineField({ name: 'summary', title: 'Summary', type: 'text' }),
-        defineField({ name: 'date', title: 'Date', type: 'date' }),
+        defineField({
+          name: 'summary',
+          title: 'Summary',
+          type: 'text',
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: 'date',
+          title: 'Date',
+          type: 'date',
+          validation: (rule) => rule.required(),
+        }),
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'ficha.summary',
+      media: 'mainImage',
+    },
+  },
 })

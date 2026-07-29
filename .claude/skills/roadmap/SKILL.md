@@ -24,7 +24,7 @@ For each merged branch found:
 ## Find in-progress work
 After resolving merged work above, look for chunks that have work started but not yet merged:
 1. Gather candidate branches from: `git branch --show-current` (current branch), `git branch --list` (all local branches), and — if `gh` is available and authenticated — `gh pr list --state open --json number,headRefName` (open, unmerged PRs).
-2. Match each candidate against the same `^(feat|fix|chore|docs)/(\d+)-` regex used for merged branches to recover a chunk number. Fallback judgment (title/file matching) does not apply here — only confident regex matches count, since there's no PR content yet to reason about for most of these.
+2. Match each candidate against the regex `^(feat|fix)/(\d+)-` — **note this deliberately excludes `chore` and `docs`**, unlike the merged-work regex. `chore`/`docs` branch numbers are arbitrary housekeeping IDs (see the closing note below: `chore/NN-update-roadmap-status`'s `NN` "doesn't need to match a table row") and are not meant to reference a chunk, so matching them here would misattribute unrelated branches to real chunk rows. Only `feat`/`fix` branches carry a genuine chunk number. Fallback judgment (title/file matching) does not apply here either — only confident regex matches count, since there's no PR content yet to reason about for most of these.
 3. Note each match as a candidate `not started → in-progress` transition, but don't apply it yet — merged work takes priority (see below).
 
 ## Update the Status column

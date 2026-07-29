@@ -45,7 +45,7 @@ Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 
 | # | Chunk | Status |
 |---|-------|--------|
-| 0 | Wire branch/PR skill + subagents to this plan | in progress |
+| 0 | Wire branch/PR skill + subagents to this plan | done |
 | 1 | Finish `piece` schema review | not started |
 | 2 | Sanity → Next.js data layer (env, client, first GROQ query) | not started |
 | 3 | Design system foundation (Tailwind config, `next/font` for the 3 typefaces) | not started |

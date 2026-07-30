@@ -17,14 +17,14 @@ Read `docs/descolgado-roadmap.md`. If it doesn't exist, STOP and tell the user �
 
 ## Match each merged branch/PR to a chunk
 For each merged branch found:
-- Try the regex `^(feat|fix)/(\d+)-` against the branch name. If it matches, the captured number (strip leading zeros) is the chunk `#` — this is a confident match. **Deliberately excludes `chore`/`docs`**: those branch numbers are arbitrary housekeeping IDs, not chunk references (see the closing note below on `chore/NN-update-roadmap-status`), so treating them as authoritative here would misattribute chore/docs merges to unrelated chunk rows.
+- Try the regex `^(feat|fix)/(\d+)-` against the branch name. If it matches, the captured number (strip leading zeros) is the chunk `#` — this is a confident match. **Deliberately excludes `chore`/`docs`**: those branch numbers are arbitrary housekeeping IDs, not chunk references (see "Identify the next chunk and start it" below for how a `chore/NN-...` branch name is used instead — to land pending Status edits, not to reference a chunk), so treating them as authoritative here would misattribute chore/docs merges to unrelated chunk rows.
 - If it doesn't match — including every `chore`/`docs` branch — use judgment: compare the PR title and changed file paths against each row's `Chunk` description in the table. For example, a merged PR whose files live under `.claude/skills/` and `.claude/agents/` corresponds to chunk 0, "Wire branch/PR skill + subagents to this plan," even though its branch was named `setup`. State your reasoning inline when you report this — don't silently assume a match.
 - If no reasonable match can be made for a merged branch, list it as unmatched and ask the user to clarify. Don't guess.
 
 ## Find in-progress work
 After resolving merged work above, look for chunks that have work started but not yet merged:
 1. Gather candidate branches from: `git branch --show-current` (current branch), `git branch --list` (all local branches), and — if `gh` is available and authenticated — `gh pr list --state open --json number,headRefName` (open, unmerged PRs).
-2. Match each candidate against the regex `^(feat|fix)/(\d+)-` — **note this deliberately excludes `chore` and `docs`**, unlike the merged-work regex. `chore`/`docs` branch numbers are arbitrary housekeeping IDs (see the closing note below: `chore/NN-update-roadmap-status`'s `NN` "doesn't need to match a table row") and are not meant to reference a chunk, so matching them here would misattribute unrelated branches to real chunk rows. Only `feat`/`fix` branches carry a genuine chunk number. Fallback judgment (title/file matching) does not apply here either — only confident regex matches count, since there's no PR content yet to reason about for most of these.
+2. Match each candidate against the regex `^(feat|fix)/(\d+)-` — **note this deliberately excludes `chore` and `docs`**, unlike the merged-work regex. `chore`/`docs` branch numbers are arbitrary housekeeping IDs (see "Identify the next chunk and start it" below — a `chore/NN-...` branch's `NN` doesn't need to match a table row, since it's just for landing pending Status edits) and are not meant to reference a chunk, so matching them here would misattribute unrelated branches to real chunk rows. Only `feat`/`fix` branches carry a genuine chunk number. Fallback judgment (title/file matching) does not apply here either — only confident regex matches count, since there's no PR content yet to reason about for most of these.
 3. Note each match as a candidate `not started → in-progress` transition, but don't apply it yet — merged work takes priority (see below).
 
 ## Update the Status column
@@ -38,6 +38,8 @@ Summarize which chunks changed status (old → new) and why (which branch/PR mat
 
 ## Identify the next chunk and start it
 Identify the next chunk to work on: the lowest-numbered row still `not started` (or `in-progress` if one exists and nothing lower is `not started`).
+
+Both terminal cases below skip auto-branching entirely, so if any Status-column edits from the sections above are still uncommitted, tell the user they can land them with `/branch chore/NN-update-roadmap-status` (auto-stashes and restores the edit on the new branch even from `main`) followed by `/commit` — this is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row.
 
 **If no row is `not started` or `in-progress`** (every chunk is `done`): report that the roadmap is complete and stop. Don't branch, don't invent a next step.
 

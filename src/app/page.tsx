@@ -1,40 +1,37 @@
-import { getClient } from "@/sanity/client";
+import Link from "next/link";
+import { Logo } from "@/components/Logo";
+import { PieceCard } from "@/components/PieceCard";
+import { mockPieces } from "@/lib/mockPieces";
 
-type Piece = {
-  title: string;
-  slug: string;
-  ficha: { summary?: string; date?: string } | null;
-};
-
-const PIECE_QUERY = `*[_type == "piece"][0]{ title, "slug": slug.current, ficha }`;
-
-export default async function Home() {
-  let piece: Piece | null = null;
-  try {
-    piece = await getClient().fetch<Piece | null>(PIECE_QUERY);
-  } catch {
-    // No Sanity project configured yet (empty NEXT_PUBLIC_SANITY_PROJECT_ID) — fall through to empty state.
-  }
+export default function Home() {
+  const [newest, ...rest] = mockPieces;
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center px-8 py-32">
-      {piece ? (
-        <article className="max-w-xl text-center">
-          <h1 className="font-grotesque text-3xl font-semibold">
-            {piece.title}
-          </h1>
-          {piece.ficha?.summary && (
-            <p className="font-body mt-4 text-lg text-descolgado-ink/80">
-              {piece.ficha.summary}
-            </p>
+    <main className="flex flex-1 flex-col px-4 py-8 sm:px-8">
+      <header className="mb-8 flex justify-center md:justify-start">
+        <Logo />
+      </header>
+
+      {newest ? (
+        <>
+          <section className="mb-12">
+            <PieceCard piece={newest} variant="hero" />
+          </section>
+
+          {rest.length > 0 && (
+            <section className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {rest.map((piece) => (
+                <PieceCard key={piece._id} piece={piece} variant="grid" />
+              ))}
+            </section>
           )}
-        </article>
+        </>
       ) : (
         <p className="font-body text-lg">
           Aún no hay piezas. Cuelga una en{" "}
-          <a href="/studio" className="text-descolgado-red underline">
+          <Link href="/studio" className="text-descolgado-red underline">
             /studio
-          </a>
+          </Link>
           .
         </p>
       )}

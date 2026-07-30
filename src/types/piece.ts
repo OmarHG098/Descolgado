@@ -1,3 +1,6 @@
+import type { PortableTextBlock } from "@portabletext/react";
+import type { SanityImageSource } from "@sanity/image-url";
+
 export type Ficha = {
   summary: string;
   date: string; // ISO "YYYY-MM-DD"
@@ -10,4 +13,11 @@ export type Piece = {
   // Not required on the Sanity schema itself, only its inner fields are —
   // real documents can have no ficha at all.
   ficha?: Ficha;
+};
+
+// Full document, fetched only on the piece detail page (feed cards don't
+// need the image asset or the Portable Text body).
+export type PieceDetail = Piece & {
+  mainImage?: SanityImageSource;
+  body?: PortableTextBlock[];
 };

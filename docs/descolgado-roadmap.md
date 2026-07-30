@@ -47,7 +47,7 @@ Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 |---|-------|--------|
 | 0 | Wire branch/PR skill + subagents to this plan | done |
 | 1 | Finish `piece` schema review | done |
-| 2 | Sanity → Next.js data layer (env, client, first GROQ query) | not started |
+| 2 | Sanity → Next.js data layer (env, client, first GROQ query) | done |
 | 3 | Design system foundation (Tailwind config, `next/font` for the 3 typefaces) | not started |
 | 4 | Home page feed (Piece cards, ficha visible) | not started |
 | 5 | Piece detail page (Portable Text render, Serif styling, sidebar) | not started |

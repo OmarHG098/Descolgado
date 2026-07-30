@@ -33,7 +33,17 @@ After resolving merged work above, look for chunks that have work started but no
 - Leave every other row untouched — don't downgrade an `in progress` row you have no merge evidence for, and don't invent progress for anything unmatched.
 - Use the Edit tool to change only the `Status` cell text of matched rows in `docs/descolgado-roadmap.md`. Preserve every other line and column exactly as-is.
 
-## Report what's next
-- Summarize which chunks changed status (old → new) and why (which branch/PR matched, and your reasoning if it was a fallback match), covering both the merged (`done`) and in-progress transitions.
-- Identify the next chunk to work on: the lowest-numbered row still `not started` (or `in progress` if one exists and nothing lower is `not started`).
-- Tell the user the roadmap file now has an uncommitted edit. If they want to land it, they can just run `/branch chore/NN-update-roadmap-status` — it auto-stashes and restores the edit on the new branch even from `main` — followed by `/commit`. This is a chore, not a numbered dev chunk, so `NN` doesn't need to match a table row. Do not create a branch, stash, or commit yourself.
+## Report merged/in-progress-elsewhere status changes
+Summarize which chunks changed status (old → new) and why (which branch/PR matched, and your reasoning if it was a fallback match), covering both the merged (`done`) and in-progress transitions from the two sections above.
+
+## Identify the next chunk and start it
+Identify the next chunk to work on: the lowest-numbered row still `not started` (or `in progress` if one exists and nothing lower is `not started`).
+
+**If that chunk is already `in progress`** (some branch/PR from the detection step above already covers it): don't create a new branch. Just report which branch/PR it is and stop — the rest of this section doesn't apply.
+
+**If that chunk is `not started`**, auto-branch into it:
+1. Run `git branch --show-current`. If it isn't `main`, STOP here and tell the user to switch to `main` first — don't auto-branch away from a branch they may be mid-work on. Do not proceed to the steps below.
+2. Derive the branch slug from the chunk's `Chunk` column text: drop anything from the first `(` onward, lowercase the rest, replace runs of non-alphanumeric characters with a single hyphen, and trim leading/trailing hyphens. Zero-pad the chunk `#` to 2 digits. The branch name is `feat/<NN>-<slug>` — e.g. chunk 4 "Home page feed (Piece cards, ficha visible)" → `feat/04-home-page-feed`.
+3. Invoke the `branch` skill with that name (any uncommitted Status-column edits from the sections above ride along automatically — `/branch` stashes and re-pops them onto the new branch). If it fails or stops for any reason (name collision, dirty `main`, stash conflict), surface that failure and STOP — do not do the next step.
+4. Once the branch is created, use the Edit tool to flip that chunk's `Status` cell from `not started` to `in-progress` in `docs/descolgado-roadmap.md`. Leave this edit uncommitted — it'll land with the chunk's first real commit, same as how other Status edits in this skill are left for the user to commit.
+5. Report the new branch name, which chunk it maps to, and that it's now marked `in-progress` (uncommitted). Then ask the user to confirm scope/approach for implementing this chunk. Do not start writing implementation code in this same turn — wait for their answer.

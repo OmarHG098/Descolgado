@@ -15,7 +15,7 @@ export function PieceCard({
     <Link href={`/piezas/${piece.slug}`} className="group block">
       <article>
         <div
-          className={`bg-gradient-to-br from-descolgado-brown to-descolgado-gray ${
+          className={`bg-gradient-to-br from-descolgado-gray to-descolgado-gray/60 ${
             isHero ? "aspect-[16/9]" : "aspect-[4/5]"
           }`}
         />
@@ -26,7 +26,7 @@ export function PieceCard({
         >
           {piece.title}
         </h2>
-        <Ficha ficha={piece.ficha} className="mt-2" />
+        {piece.ficha && <Ficha ficha={piece.ficha} className="mt-2" />}
       </article>
     </Link>
   );

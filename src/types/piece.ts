@@ -7,5 +7,7 @@ export type Piece = {
   _id: string;
   title: string;
   slug: string;
-  ficha: Ficha;
+  // Not required on the Sanity schema itself, only its inner fields are —
+  // real documents can have no ficha at all.
+  ficha?: Ficha;
 };

@@ -28,3 +28,15 @@ export async function getAllPieces(): Promise<Piece[]> {
     }`,
   )
 }
+
+export async function searchPieces(term: string): Promise<Piece[]> {
+  return getClient().fetch(
+    `*[_type == "piece" && (title match $term || ficha.summary match $term)] | order(ficha.date desc){
+      _id,
+      title,
+      "slug": slug.current,
+      ${FICHA_PROJECTION}
+    }`,
+    { term: `${term}*` },
+  )
+}

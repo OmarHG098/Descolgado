@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Logo } from "@/components/Logo";
 import { Ficha } from "@/components/Ficha";
 import { PieceBody } from "@/components/PieceBody";
 import { PieceSidebar } from "@/components/PieceSidebar";
@@ -34,10 +33,6 @@ export default async function PiezaPage({
   return (
     <div className="flex flex-1 flex-col md:flex-row">
       <div className="flex flex-1 flex-col px-4 py-8 sm:px-8">
-        <header className="mb-8 flex justify-center md:justify-start">
-            <Logo />
-        </header>
-
         <article className="mx-auto w-full max-w-3xl">
           {imageUrl && (
             <Image

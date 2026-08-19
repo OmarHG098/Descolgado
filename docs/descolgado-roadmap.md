@@ -50,8 +50,8 @@ Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 | 2 | Sanity → Next.js data layer (env, client, first GROQ query) | done |
 | 3 | Design system foundation (Tailwind config, `next/font` for the 3 typefaces) | done |
 | 4 | Home page feed (Piece cards, ficha visible) | done |
-| 5 | Piece detail page (Portable Text render, Serif styling, sidebar) | in-progress |
-| 6 | Navbar + footer + keyword search | not started |
+| 5 | Piece detail page (Portable Text render, Serif styling, sidebar) | done |
+| 6 | Navbar + footer + keyword search | in-progress |
 | 7 | Social features (WhatsApp share, Instagram comment link) | not started |
 | 8 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | not started |
 | 9 | Deploy to Vercel + deploy checklist | not started |

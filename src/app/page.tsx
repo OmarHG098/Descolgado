@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
 import { PieceCard } from "@/components/PieceCard";
 import { mockPieces } from "@/lib/mockPieces";
 
@@ -8,10 +7,6 @@ export default function Home() {
 
   return (
     <main className="flex flex-1 flex-col px-4 py-8 sm:px-8">
-      <header className="mb-8 flex justify-center md:justify-start">
-        <Logo />
-      </header>
-
       {newest ? (
         <>
           <section className="mb-12">

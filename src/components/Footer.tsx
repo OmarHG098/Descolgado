@@ -1,7 +1,5 @@
+import { Logo } from "@/components/Logo";
+
 export function Footer() {
-  return (
-    <footer className="bg-descolgado-brown/30 font-body text-descolgado-ink/70 mt-auto px-4 py-6 text-center text-xs sm:px-8">
-      <p>© {new Date().getFullYear()} Descolgado. Diseño y desarrollo propios.</p>
-    </footer>
-  );
+  return <footer className="mt-16 border-t-4 border-ink"><div className="flex flex-col items-center justify-center gap-2 px-5 py-9 text-center sm:flex-row sm:gap-5"><span className="font-grotesque text-3xl">◎</span><p className="font-serif text-xl">Seguinos <span className="italic">@descolgado</span></p></div><div className="bg-ink px-5 py-12 text-center text-paper"><p className="font-grotesque text-[10px] uppercase tracking-[0.2em]">Newsletter</p><form className="mx-auto mt-4 flex max-w-sm gap-2"><input type="email" placeholder="Tu email" aria-label="Tu email" className="min-w-0 flex-1 border border-paper/30 bg-paper px-3 py-2 font-serif text-sm text-ink" /><button type="submit" className="bg-accent px-4 py-2 font-grotesque text-[10px] uppercase tracking-[0.15em]">Suscribite</button></form><div className="mt-10 text-paper"><Logo className="text-paper" /></div><p className="mt-5 font-grotesque text-[10px] tracking-[0.12em] text-paper/60">Copyright © 2026 Descolgado. Todos los derechos reservados.</p></div></footer>;
 }

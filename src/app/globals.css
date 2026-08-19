@@ -1,19 +1,22 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-descolgado-yellow: #d4a017;
-  --color-descolgado-brown: #c4a882;
-  --color-descolgado-gray: #e8e4dc;
-  --color-descolgado-red: #9b2a2a;
-  --color-descolgado-ink: #000000;
-
-  --font-grotesque: var(--font-grotesque-family), sans-serif;
-  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-paper: #f7f6f1;
+  --color-ink: #111111;
+  --color-accent: #22a889;
+  --color-stone: #b6afa3;
+  --color-sage: #8c9d8b;
+  --color-clay: #b97861;
+  --color-slate: #71828a;
+  --color-ochre: #b49a62;
+  --color-moss: #5f765f;
+  --font-grotesque: var(--font-grotesque-family), Arial, sans-serif;
+  --font-body: var(--font-serif-family), Georgia, serif;
   --font-serif: var(--font-serif-family), Georgia, serif;
 }
 
-body {
-  background: var(--color-descolgado-gray);
-  color: var(--color-descolgado-ink);
-  font-family: var(--font-body);
-}
+html { background: var(--color-paper); }
+body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); }
+.editorial-image { overflow: hidden; border: 1px solid rgb(17 17 17 / 0.55); position: relative; }
+.editorial-image::after { content: ""; position: absolute; inset: 12% 18%; border: 1px solid rgb(247 246 241 / 0.35); transform: rotate(-5deg); }
+.image-mark { position: absolute; bottom: 10px; left: 12px; z-index: 1; font-family: var(--font-grotesque-family), sans-serif; font-size: 9px; letter-spacing: .22em; color: rgb(247 246 241 / .75); }

@@ -30,14 +30,15 @@ Santiago is the sole author/admin — no multi-user system. Access to the editin
 ## Design system
 
 **Typography:**
-- Body/general text: pure black `#000000`.
+- Body/general text: ink `#111111`.
 - UI/navigation (navbar, sidebar, interface elements): Grotesque-style typeface.
-- General content body: Helvetica (or clean sans-serif alternative).
+- General content body: Helvetica (or clean sans-serif alternative) — kept even where the surrounding layout uses serif accents, per client direction.
 - Article detail page: Serif typeface (editorial/essay feel).
 
-**Color palette:**
-- Navigation / header / sidebar: Yellow `#D4A017` and quarry brown `#C4A882`.
-- Reading area / article: Base gray background `#E8E4DC`, red `#9B2A2A` for sparing accents.
+**Color palette** (v0-designed "editorial magazine" palette, approved by the client via PR #11, superseding the original yellow/brown/gray/red scheme):
+- Base: paper `#F7F6F1` (background), ink `#111111` (text/borders).
+- Accent (sparing, for CTAs/labels/dates): teal `#22A889`.
+- Image-fallback tones (used only behind pieces with no `mainImage` yet, rotated deterministically per piece): stone `#B6AFA3`, sage `#8C9D8B`, clay `#B97861`, slate `#71828A`, ochre `#B49A62`, moss `#5F765F`.
 
 ## Page structure
 

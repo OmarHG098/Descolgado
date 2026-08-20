@@ -27,7 +27,7 @@ export function PieceSidebar({
     : others;
 
   return (
-    <aside className="bg-descolgado-brown/30 flex flex-col gap-4 p-4 sm:p-6">
+    <aside className="border-ink/20 bg-paper flex flex-col gap-4 border p-4 sm:p-6">
       <label className="font-grotesque flex flex-col gap-1 text-sm">
         Filtrar piezas
         <input
@@ -35,7 +35,7 @@ export function PieceSidebar({
           value={filter}
           onChange={(event) => setFilter(event.target.value)}
           placeholder="Buscar por título..."
-          className="border-descolgado-ink/30 bg-descolgado-gray font-body px-3 py-2 text-base"
+          className="border-ink/30 bg-paper font-body px-3 py-2 text-base"
         />
       </label>
 
@@ -51,7 +51,7 @@ export function PieceSidebar({
             {piece.ficha && (
               <time
                 dateTime={piece.ficha.date}
-                className="font-body text-descolgado-ink/60 text-xs"
+                className="font-body text-ink/60 text-xs"
               >
                 {DATE_FORMATTER.format(new Date(piece.ficha.date))}
               </time>
@@ -59,7 +59,7 @@ export function PieceSidebar({
           </li>
         ))}
         {filtered.length === 0 && (
-          <li className="font-body text-descolgado-ink/60 text-sm">
+          <li className="font-body text-ink/60 text-sm">
             Sin resultados.
           </li>
         )}

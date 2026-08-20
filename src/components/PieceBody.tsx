@@ -23,7 +23,7 @@ const components: PortableTextComponents = {
 
 export function PieceBody({ body }: { body: PortableTextBlock[] }) {
   return (
-    <div className="font-serif text-ink max-w-prose text-lg">
+    <div className="font-body text-ink max-w-prose text-lg">
       <PortableText value={body} components={components} />
     </div>
   );

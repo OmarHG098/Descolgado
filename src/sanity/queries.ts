@@ -24,6 +24,7 @@ export async function getAllPieces(): Promise<Piece[]> {
       _id,
       title,
       "slug": slug.current,
+      mainImage,
       ${FICHA_PROJECTION}
     }`,
   )
@@ -35,6 +36,7 @@ export async function searchPieces(term: string): Promise<Piece[]> {
       _id,
       title,
       "slug": slug.current,
+      mainImage,
       ${FICHA_PROJECTION}
     }`,
     { term: `${term}*` },

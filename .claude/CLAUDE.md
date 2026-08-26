@@ -18,7 +18,7 @@ This is the non-negotiable design principle for every technical decision. Never 
 
 ## Auth model
 
-Santiago is the sole author/admin — no multi-user system. Access to the editing interface is via a secure link/magic token, not a full username+password user management system.
+Santiago is the sole author; access to the editing interface (Sanity Studio at `/studio`) is restricted to exactly 2 people (Santiago + the site's developer/owner) — no broader multi-user system. There is no custom app-level auth: Studio uses Sanity's own login (OAuth/email), and edit access is gated by **Sanity project membership** (sanity.io/manage → project → Members), not a custom secure-link/magic-token scheme. The `production` dataset's ACL mode stays `public` because the public site does anonymous GROQ reads with no API token configured — public dataset visibility only grants anonymous *read* of published documents, not write access, so it doesn't weaken the Studio access restriction.
 
 ## Content editor requirements
 

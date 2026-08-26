@@ -13,11 +13,11 @@ export type Piece = {
   // Not required on the Sanity schema itself, only its inner fields are —
   // real documents can have no ficha at all.
   ficha?: Ficha;
+  mainImage?: SanityImageSource;
 };
 
 // Full document, fetched only on the piece detail page (feed cards don't
-// need the image asset or the Portable Text body).
+// need the Portable Text body).
 export type PieceDetail = Piece & {
-  mainImage?: SanityImageSource;
   body?: PortableTextBlock[];
 };

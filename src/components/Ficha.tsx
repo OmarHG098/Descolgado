@@ -16,8 +16,8 @@ export function Ficha({
 }) {
   return (
     <div className={["font-serif", className].filter(Boolean).join(" ")}>
-      <p className="text-descolgado-ink/80">{ficha.summary}</p>
-      <time dateTime={ficha.date} className="mt-1 block text-sm text-descolgado-red">
+      <p className="text-ink/80">{ficha.summary}</p>
+      <time dateTime={ficha.date} className="mt-1 block text-sm text-accent">
         {DATE_FORMATTER.format(new Date(ficha.date))}
       </time>
     </div>

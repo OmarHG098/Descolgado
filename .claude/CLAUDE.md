@@ -30,18 +30,19 @@ Santiago is the sole author/admin — no multi-user system. Access to the editin
 ## Design system
 
 **Typography:**
-- Body/general text: pure black `#000000`.
+- Body/general text: ink `#111111`.
 - UI/navigation (navbar, sidebar, interface elements): Grotesque-style typeface.
-- General content body: Helvetica (or clean sans-serif alternative).
-- Article detail page: Serif typeface (editorial/essay feel).
+- General content body (including the article/piece body copy itself): Helvetica (or clean sans-serif alternative) — kept even where the surrounding layout uses serif accents, per client direction.
+- Ficha/data-sheet details only: Serif typeface (editorial/essay feel). Large display titles/headlines (e.g. piece cards) may also use serif as a deliberate stylistic accent — this is distinct from body copy.
 
-**Color palette:**
-- Navigation / header / sidebar: Yellow `#D4A017` and quarry brown `#C4A882`.
-- Reading area / article: Base gray background `#E8E4DC`, red `#9B2A2A` for sparing accents.
+**Color palette** (v0-designed "editorial magazine" palette, approved by the client via PR #11, superseding the original yellow/brown/gray/red scheme):
+- Base: paper `#F7F6F1` (background), ink `#111111` (text/borders).
+- Accent (sparing, for CTAs/labels/dates): teal `#22A889`.
+- Image-fallback tones (used only behind pieces with no `mainImage` yet, rotated deterministically per piece): stone `#B6AFA3`, sage `#8C9D8B`, clay `#B97861`, slate `#71828A`, ochre `#B49A62`, moss `#5F765F`.
 
 ## Page structure
 
-- **Navbar:** Home, About, Contact links + keyword search. Grotesque typography, yellow/brown accents.
+- **Navbar:** Home, About, Contact links + keyword search. Grotesque typography, paper/ink/accent palette.
 - **Home:** Feed of "Pieces" (articles), each showing its technical data sheet ("ficha"), visible or expandable.
 - **Piece/article view:** Sidebar shown only here, with filtering and newest-to-oldest chronological order. WhatsApp share button. Comments handled via redirect/integration to Instagram (not a native comment system).
 - **Footer:** Copyright and design credits.
@@ -58,6 +59,6 @@ Terminology to keep consistent in code/content: an article is a "Piece" ("Pieza"
   - Grotesque/UI role → `Space Grotesk` (`font-grotesque` utility)
   - Serif/article role → `Source Serif 4` (`font-serif` utility)
   - Helvetica/body role → system stack `Helvetica Neue, Helvetica, Arial, sans-serif`, no Google Font (`font-body` utility)
-- **Color tokens** (Tailwind `@theme` in `globals.css`): `descolgado-yellow` `#D4A017`, `descolgado-brown` `#C4A882`, `descolgado-gray` `#E8E4DC`, `descolgado-red` `#9B2A2A`, `descolgado-ink` `#000000`.
+- **Color tokens** (Tailwind `@theme` in `globals.css`): `paper` `#F7F6F1`, `ink` `#111111`, `accent` `#22A889`, plus image-fallback tones `stone` `#B6AFA3`, `sage` `#8C9D8B`, `clay` `#B97861`, `slate` `#71828A`, `ochre` `#B49A62`, `moss` `#5F765F`.
 - **Home page** (`src/app/page.tsx`) is a placeholder proving the pipeline: fetches one `piece` via GROQ and renders it, with an empty-state message pointing to `/studio`. The real navbar/feed/sidebar/footer described in "Page structure" are not built yet.
 - **Not yet done by the user:** creating the actual Sanity.io project (needed to fill in `.env.local` with a real project ID) and creating/linking the Vercel project for deployment — both require manual account setup outside this repo.

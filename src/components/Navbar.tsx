@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { SearchToggle } from "@/components/SearchToggle";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -9,32 +10,31 @@ const NAV_LINKS = [
 
 export function Navbar() {
   return (
-    <header className="bg-descolgado-yellow border-descolgado-ink/10 border-b">
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-8">
-        <Logo />
+    <header className="border-ink bg-paper border-b">
+      <div className="mx-auto max-w-[1180px] px-4 sm:px-8">
+        <div className="border-ink/50 font-grotesque flex items-center justify-between border-b py-2 text-[10px] uppercase tracking-[0.18em]">
+          <span className="text-ink/60">Revista digital independiente</span>
+          <Link href="/contacto" className="hover:text-accent">
+            Contacto
+          </Link>
+        </div>
 
-        <nav className="font-grotesque flex items-center gap-6 text-sm font-medium">
-          {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:underline">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center justify-center py-6">
+          <Logo />
+        </div>
 
-        <form action="/buscar" className="flex items-center gap-2">
-          <input
-            type="search"
-            name="q"
-            placeholder="Buscar piezas..."
-            className="font-body border-descolgado-ink/20 bg-descolgado-gray px-3 py-1.5 text-sm"
-          />
-          <button
-            type="submit"
-            className="font-grotesque text-sm font-medium hover:underline"
-          >
-            Buscar
-          </button>
-        </form>
+        <div className="border-ink/50 relative flex items-center justify-center border-t py-3">
+          <nav className="font-grotesque flex items-center gap-6 text-sm font-medium">
+            {NAV_LINKS.map((link) => (
+              <Link key={link.href} href={link.href} className="hover:text-accent">
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <form action="/buscar" className="absolute right-0">
+            <SearchToggle />
+          </form>
+        </div>
       </div>
     </header>
   );

@@ -11,7 +11,7 @@ const components: PortableTextComponents = {
     link: ({ children, value }) => (
       <a
         href={value?.href}
-        className="text-descolgado-red underline"
+        className="text-accent underline"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -23,7 +23,7 @@ const components: PortableTextComponents = {
 
 export function PieceBody({ body }: { body: PortableTextBlock[] }) {
   return (
-    <div className="font-serif text-descolgado-ink max-w-prose text-lg">
+    <div className="font-body text-ink max-w-prose text-lg">
       <PortableText value={body} components={components} />
     </div>
   );

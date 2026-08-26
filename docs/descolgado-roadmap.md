@@ -9,9 +9,14 @@ References: 3AM, JotDown, Interview, Vulture.
 
 ## Design System
 - **Typography:** Grotesque (nav/sidebar/UI) · Helvetica (article body,
-  black text) · Serif (article "ficha"/details)
-- **Palette 1 (nav/header/sidebar):** yellow `#D4A017`, quarry brown `#C4A882`
-- **Palette 2 (reading area/article):** base gray `#E8E4DC`, red accent `#9B2A2A`
+  kept even under the new editorial layout) · Serif (article "ficha"/details)
+- **Palette** (v0-designed "editorial magazine" scheme, approved by the
+  client via PR #11, replaces the original yellow/brown/gray/red scheme):
+  paper `#F7F6F1` (background), ink `#111111` (text/borders), accent teal
+  `#22A889` (sparing use — CTAs, labels, dates)
+- **Image-fallback tones** (no-image placeholder only): stone `#B6AFA3`,
+  sage `#8C9D8B`, clay `#B97861`, slate `#71828A`, ochre `#B49A62`,
+  moss `#5F765F`
 
 ## Content Model
 Sanity document type `piece`:
@@ -53,8 +58,10 @@ Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 | 5 | Piece detail page (Portable Text render, Serif styling, sidebar) | done |
 | 6 | Navbar + footer + keyword search | in-progress |
 | 7 | Social features (WhatsApp share, Instagram comment link) | not started |
-| 8 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | not started |
-| 9 | Deploy to Vercel + deploy checklist | not started |
+| 8 | Home page: real Sanity data + editorial redesign (palette/layout from PR #11) | in-progress |
+| 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | not started |
+| 10 | Deploy to Vercel + deploy checklist | not started |
+| 11 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
 
 ## Claude Code Workflow
 - Terminal-based (not desktop app) — branch/PR skills rely on git + hooks

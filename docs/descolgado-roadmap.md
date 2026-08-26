@@ -55,6 +55,20 @@ webp/avif format negotiation (`next.config.ts` allows `cdn.sanity.io` via
 serves a lighter source image for Next's optimizer to re-encode, instead of a
 full-quality original.
 
+## Studio access (chunk 10 confirmation)
+Sanity Studio (`/studio`) has no custom app-level auth — it just mounts
+`NextStudio`. That's intentional: edit access is gated by **Sanity project
+membership**, not a code-level check. The `production` dataset's ACL mode
+stays `public` (verified via the Sanity MCP `list_datasets` tool) because
+the site does anonymous GROQ reads with no API token configured
+(`.env.local.example` has no token var) — flipping it to `private` would
+break the live site's data fetching. Public dataset visibility only grants
+anonymous **read** of published documents; it does not grant write access.
+Studio login + edit rights require being an invited member of the Sanity
+project (sanity.io/manage → Descolgado → Members). Verified: the project has
+exactly 2 members (Santiago + the site owner) — confirmed manually, no
+member-list tool available via MCP to verify programmatically.
+
 ## Development Plan (≤3h per chunk)
 
 | # | Chunk | Status |
@@ -69,8 +83,10 @@ full-quality original.
 | 7 | Social features (WhatsApp share, Instagram comment link) | postponed |
 | 8 | Home page: real Sanity data + editorial redesign (palette/layout from PR #11) | done |
 | 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | done |
-| 10 | Deploy to Vercel + deploy checklist | not started |
-| 11 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
+| 10 | Restrict Sanity Studio access to 2 accounts (project membership) | done |
+| 11 | Hide Newsletter + "Seguinos @descolgado" footer blocks (temporary) | not started |
+| 12 | Deploy to Vercel + deploy checklist | not started |
+| 13 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
 
 ## Claude Code Workflow
 - Terminal-based (not desktop app) — branch/PR skills rely on git + hooks

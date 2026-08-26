@@ -84,7 +84,7 @@ member-list tool available via MCP to verify programmatically.
 | 8 | Home page: real Sanity data + editorial redesign (palette/layout from PR #11) | done |
 | 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | done |
 | 10 | Restrict Sanity Studio access to 2 accounts (project membership) | done |
-| 11 | Hide Newsletter + "Seguinos @descolgado" footer blocks (temporary) | not started |
+| 11 | Hide Newsletter + "Seguinos @descolgado" footer blocks (temporary) | done |
 | 12 | Deploy to Vercel + deploy checklist | not started |
 | 13 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
 

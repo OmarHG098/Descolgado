@@ -46,6 +46,15 @@ $0/month target — Vercel Hobby (Jamstack/static generation) + Sanity.io free p
 Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 `@sanity/client`, `@sanity/image-url`, Sanity v6.
 
+## Image pipeline (chunk 9 confirmation)
+All `mainImage` renders go through `next/image`, which already handles
+lazy-loading (`loading="lazy"` unless the hero variant sets `priority`) and
+webp/avif format negotiation (`next.config.ts` allows `cdn.sanity.io` via
+`remotePatterns`; Next's default `formats` includes both). Chunk 9 added
+`.auto('format').quality(80)` to `src/sanity/image.ts`'s `urlFor()` so Sanity
+serves a lighter source image for Next's optimizer to re-encode, instead of a
+full-quality original.
+
 ## Development Plan (≤3h per chunk)
 
 | # | Chunk | Status |
@@ -56,10 +65,10 @@ Next.js 16.2.11, React 19.2.4, Tailwind v4, TypeScript, `next-sanity`,
 | 3 | Design system foundation (Tailwind config, `next/font` for the 3 typefaces) | done |
 | 4 | Home page feed (Piece cards, ficha visible) | done |
 | 5 | Piece detail page (Portable Text render, Serif styling, sidebar) | done |
-| 6 | Navbar + footer + keyword search | in-progress |
-| 7 | Social features (WhatsApp share, Instagram comment link) | not started |
-| 8 | Home page: real Sanity data + editorial redesign (palette/layout from PR #11) | in-progress |
-| 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | not started |
+| 6 | Navbar + footer + keyword search | done |
+| 7 | Social features (WhatsApp share, Instagram comment link) | postponed |
+| 8 | Home page: real Sanity data + editorial redesign (palette/layout from PR #11) | done |
+| 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | done |
 | 10 | Deploy to Vercel + deploy checklist | not started |
 | 11 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
 

@@ -69,6 +69,18 @@ project (sanity.io/manage → Descolgado → Members). Verified: the project has
 exactly 2 members (Santiago + the site owner) — confirmed manually, no
 member-list tool available via MCP to verify programmatically.
 
+## Deploy confirmation (chunk 12 confirmation)
+Production deployment is live on Vercel, set up manually via the Vercel
+dashboard (not through this repo's CLI/skills — there's no local Vercel CLI
+install, and no `vercel.json`/`vercel.ts` in the repo, which is expected
+since Vercel auto-detects Next.js App Router projects with zero config).
+The three Sanity env vars (`NEXT_PUBLIC_SANITY_PROJECT_ID`,
+`NEXT_PUBLIC_SANITY_DATASET`, `NEXT_PUBLIC_SANITY_API_VERSION`) are set in
+Vercel → Project Settings → Environment Variables, matching
+`.env.local.example`. Sanity Studio is confirmed wired and reachable at
+`/studio` on the production deployment, with access restricted per the
+chunk 10 project-membership model above.
+
 ## Development Plan (≤3h per chunk)
 
 | # | Chunk | Status |
@@ -85,7 +97,7 @@ member-list tool available via MCP to verify programmatically.
 | 9 | Image pipeline (confirm Sanity's built-in webp/lazy-load) | done |
 | 10 | Restrict Sanity Studio access to 2 accounts (project membership) | done |
 | 11 | Hide Newsletter + "Seguinos @descolgado" footer blocks (temporary) | done |
-| 12 | Deploy to Vercel + deploy checklist | not started |
+| 12 | Deploy to Vercel + deploy checklist | done |
 | 13 | Pieces archive/pagination page (target for a future "Más piezas" link) | not started |
 
 ## Claude Code Workflow
